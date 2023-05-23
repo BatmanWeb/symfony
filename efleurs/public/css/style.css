@@ -1,0 +1,13 @@
+@media screen and (max-width:992px) {
+    .mini {
+        display: none;
+    }
+}
+
+
+@media screen and (min-width:992px) {
+    .mini {
+        width:10rem;
+    }
+}
+  

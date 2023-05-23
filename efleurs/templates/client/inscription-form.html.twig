@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4">
+                <div class="bg-light mt-4 p-4">
+                    <form action="{{path('client-inscription-reg')}}" method="POST">
+                        <h5>Créez votre compte</h5>
+                        <div class="col mt-3">
+                            <label>Votre nom</label>
+                            <input type="text" name="nom" class="form-control" value="{{ nom is defined ? nom : ''}}" placeholder="50 caractères maximum" maxlength="50">
+                            {% if erreurNom is defined %}
+                                <p class="text-danger">{{erreurNom}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col mt-3">
+                            <label>Prénom</label>
+                            <input type="text" name="prenom" class="form-control" value="{{ prenom is defined ? prenom : ''}}" placeholder="50 caractères maximum" maxlength="50">
+                            {% if erreurPrenom is defined %}
+                                <p class="text-danger">{{erreurPrenom}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col mt-3">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" value="{{ email is defined ? email : ''}}" placeholder="100 caractères maximum" maxlength="100">
+                            {% if erreurMail is defined %}
+                                <p class="text-danger">{{erreurMail}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col mt-3">
+                            <label>Mot de passe</label>
+                            <input type="password" name="mdp" class="form-control" placeholder="Au moins 8 caractères dont au moins 1 chiffre">
+                            {% if erreurMdp is defined %}
+                                <p class="text-danger">{{erreurMdp}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col mt-3 text-end">
+                            <button class="btn btn-success">Créer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}

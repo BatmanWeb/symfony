@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+       <div class="row">
+            <div class="col-lg-8 ">
+                <div class="bg-light mt-4 p-4">
+                    <form action="{{path('cmd-reg-detail')}}" method="POST">
+                        <h5>Ajoutez votre message !</h5>
+                        
+                        <div class="col mt-3">
+                            <label>Votre message</label>
+                            <textarea name="message" id="message" cols="30" rows="10" class="form-control"  placeholder="250 caractères maximum" maxlength="250">{{ message }}</textarea>
+                        </div>
+                         <div class="col mt-3">
+                            <label>Votre signature</label>
+                            <textarea name="signature" id="signature" cols="30" rows="2" class="form-control"  placeholder="Signature" maxlength="250">{{ signature }}</textarea>
+                        </div>
+
+                        <div class="col mt-3 text-end">
+                            <button class="btn btn-success">Continuer</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        <div class="col-lg-4 ">
+        {{ render(controller('App\\Controller\\PanierController::afficheResum')) }}
+        </div>
+        </div>
+ 
+{% endblock %}

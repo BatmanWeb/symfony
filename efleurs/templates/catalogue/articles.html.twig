@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="text-center">
+        <h1>Catalogue</h1>
+    </div>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for a in articles %}
+            <div class="col">
+                    <div class="card article-card">
+                        <img src="{{ asset ('articles/' ~ a.artImage)}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><a class="text-decoration-none link-dark stretched-link" href="{{ path('article_details', {'id' : a.id}) }}">{{ a.artNom }}</a></h5>
+                            <span class="badge rounded-pill bg-success fs-6">
+                            <p class="card-text">Prix TTC : {{ a.prixTTC | number_format(2)}} €</p>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+<div>
+{% endblock %}

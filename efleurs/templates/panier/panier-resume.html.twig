@@ -1,0 +1,27 @@
+<table class="table">
+    <thead class="table-success">
+        <tr>
+            <th class="text-center" colspan="2">
+                <span class="text-uppercase">Récapitulatif</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Qte article</th>
+            <td>{{qteArticles}}</td>
+        </tr>
+        <tr>
+            <th>Total HT</th>
+            <td>{{ totalHt | number_format(2) }}€</td>
+        </tr>
+         <tr>
+            <th>Total TVA</th>
+            <td>{{ totalTva | number_format(2) }}€</td>
+        </tr>
+        <tr>
+            <th>Total TTC</th>
+            <td>{{ totalTtc | number_format(2) }}€</td>
+        </tr>
+    </tbody>
+</table>

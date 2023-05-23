@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="text-center bg-light py-4"><h1>Panier</h1></div>
+
+{% if  panier %}
+<div class="container p-0 mt-5">
+    <div class="row m-0">
+        <div class="col-lg-8">
+        {#Ligne panier#}
+            <div class="table-responsive">
+                <table class="table">
+                    <th></th>
+                    <th class="text-nowrap">Description</th>
+                    <th class="text-nowrap">Sous-total HT</th>
+                    <th class="text-nowrap">TVA</th>
+                    <th class="text-nowrap">Sous-total TTC</th>
+                    <th></th>
+                    <tbody>
+                                {% for line in panier %}
+                                    <tr>
+                                        <td>
+                                            <img class="mini" src="{{ asset('articles/' ~ line.article.artImage)}}" alt="line.article.artNom">
+                                        </td>
+                                        <td>
+                                        <div><h5>{{line.article.artNom}}</h5>
+                                        <p class="text-nowrap">Prix HT <span class="h5 badge bg-success rounded-pilll">{{line.lignePrixHt | number_format(2)}}€</span></p>
+                                        <p class="text-nowrap">
+                                        Quantité :  <a class="btn btn-outline-success btn-sm mx-1" href="{{ path('panier-diminuer',{'id' : line.article.id}) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                                                    </svg></a> 
+                                        {{line.ligneQte}}
+                                                    <a href="{{ path('panier-add',{'id' : line.article.id}) }}" class="btn btn-outline-success btn-sm mx-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                                                    </svg></a>
+                                        </p>
+                                        </div>
+                                        </td>
+                                        <td>{{line.sousTotalHt | number_format(2) }}€</td>
+                                        <td>{{line.ligneTva | number_format(2) }}€</td>
+                                        <td>{{line.sousTotalTtc | number_format(2) }}€</td>
+                                        <td><a href="{{ path('panier-supprimer',{'id' : line.article.id}) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                        </svg>
+                                                        </a></td>
+                                    </tr>
+                                {% endfor %}
+
+                            </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-4">
+        {#on inclu le resum panier #}
+        {{ render(controller('App\\Controller\\PanierController::afficheResum')) }}
+        </div>
+        <div><a href="{{ path('cmd-detail') }}" class="btn btn-success float-end"> Commander </a></div>
+    <div>
+</div>
+{% else %}
+<div class="text-center py-5">Votre panier est vide</div>
+{% endif %}
+{% endblock %}

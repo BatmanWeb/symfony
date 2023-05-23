@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-8 text-center">
+        <img src="{{ asset('boutique/paiement.jpg')}}" alt="">
+        <p>Montant de la transaction <span class="text-danger h3">{{totalTransac | number_format(2)}}€</span></p>
+    </div>
+            <div class="col-lg-4 ">
+        {{ render(controller('App\\Controller\\PanierController::afficheResum')) }}
+        </div>
+</div>
+       <div class="row">
+            <div class="col-lg-8 ">
+                <div class="bg-light mt-4 p-4">
+                    <form action="{{path('panier-payer')}}" method="POST">
+                        <h5> information carte de payement</h5>
+                        
+                        <div class="col mt-3 text-end">
+                            <button class="btn btn-success">payer</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+ 
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4">
+                <div class="bg-light mt-4 p-4">
+                    <form action="{{path('client-valider-login')}}" method="POST">
+                        <h5>Connection</h5>
+                        {% if loginFailed is defined %}
+                                <H5 class="text-danger">{{loginFailed}}</H5>
+                            {% endif %}
+                        <div class="col mt-3">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" value="{{ email is defined ? email : ''}}" placeholder="Email" maxlength="100">
+                            {% if erreurEmail is defined %}
+                                <p class="text-danger">{{erreurEmail}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col mt-3">
+                            <label>Mot de passe</label> <a class="text-decoration-none float-end" href="#">Mot de passe oublié</a>
+                            <input type="password" name="mdp" class="form-control" placeholder="Au moins 8 caractères dont au moins 1 chiffre">
+                            {% if erreurMdp is defined %}
+                                <p class="text-danger">{{erreurMdp}}</p>
+                            {% endif %}
+                        </div>
+                        <div class="col mt-3 text-end">
+                            <button class="btn btn-success">Valider</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}
